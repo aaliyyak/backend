@@ -18,6 +18,7 @@ return new class extends Migration
         $table->string('prodi');
         $table->string('nidn')->unique();
         $table->string('email')->nullable();
+        $table->string('keahlian')->nullable();
         $table->timestamps();
     });
 }

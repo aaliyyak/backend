@@ -27,6 +27,7 @@ class DosenController extends Controller
             'prodi' => 'required|string',
             'nidn' => 'nullable|string',
             'email' => 'nullable|email',
+            'keahlian' => 'nullable|string', 
         ]);
 
         $gambarPath = $request->file('gambar')->store('dosen', 'public');
@@ -37,6 +38,7 @@ class DosenController extends Controller
             'prodi' => $request->prodi,
             'nidn' => $request->nidn,
             'email' => $request->email,
+            'keahlian' => $request->keahlian,
         ]);
 
         return redirect()->route('dosen.index')->with('success', 'Dosen berhasil ditambahkan!');
@@ -58,6 +60,7 @@ class DosenController extends Controller
             'nidn' => 'required|string',
             'email' => 'required|email',
             'gambar' => 'nullable|image',
+            'keahlian' => 'nullable|string',
         ]);
 
         if ($request->hasFile('gambar')) {

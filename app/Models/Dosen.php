@@ -10,5 +10,5 @@ class Dosen extends Model
     use HasFactory;
  // Tentukan nama tabel eksplisit
     protected $table = 'dosen';
-    protected $fillable = ['gambar', 'nama', 'prodi', 'nidn', 'email'];
+    protected $fillable = ['gambar', 'nama', 'prodi', 'nidn', 'email', 'keahlian'];
 }

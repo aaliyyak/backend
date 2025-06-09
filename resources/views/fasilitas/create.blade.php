@@ -24,7 +24,7 @@
             <label>Longitude</label>
             <input type="text" name="longitude" class="form-control">
         </div>
-        <div class="mb-3">
+        <div class="mb-">
             <label>Deskripsi</label>
             <textarea name="deskripsi" class="form-control"></textarea>
         </div>

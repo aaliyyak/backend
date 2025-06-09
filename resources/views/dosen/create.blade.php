@@ -24,6 +24,9 @@
             <label>Email</label>
             <input type="email" name="email" class="form-control">
         </div>
+        <div class="mb-3">
+            <label>Keahlian</label>
+            <input type="text" name="keahlian" class="form-control">
         <button type="submit" class="btn btn-primary">💾 Simpan</button>
     </form>
 @endsection

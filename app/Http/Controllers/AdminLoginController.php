@@ -1,31 +1,37 @@
 <?php
 
-namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Hash;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin;
 
 class AdminLoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.admin-login');
     }
 
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
 
-        $admin = Admin::where('username', $credentials['username'])->first();
-
-        if ($admin && Hash::check($credentials['password'], $admin->password)) {
-            // Simpan session login
-            session(['admin_logged_in' => true]);
-            return redirect()->route('dashboard'); // atur route dashboard
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->intended('/dashboard');
         }
 
-        return back()->withErrors(['login' => 'Username atau password salah.']);
+        return back()->withErrors([
+            'login' => 'Username atau password salah.',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login');
     }
 }
